@@ -300,7 +300,8 @@
 <p>计算得到 ints 中只有一个数属于 p 的二次剩余。而 $p \equiv 3 \pmod 4$ 。</p>
 <p>因为 $p \equiv 3 \pmod 4$ ，所以 $p &#x3D; 4k+3$ ，$p+1&#x3D;4k+4$ ，$p-1&#x3D;4k+2$。k 是整数。</p>
 <p>已知 a 是二次剩余，所以有：</p>
-<p>$$<br>\begin{aligned}<br>a^{\frac{p-1}{2}} &amp;\equiv 1 \pmod p \<br>a^{2k+1} &amp;\equiv 1 \pmod p<br>\end{aligned}<br>$$</p>
+<p>$$<br>a^{\frac{p-1}{2}} \equiv 1 \pmod p<br>$$</p>
+<p>$$<br>a^{2k+1} \equiv 1 \pmod p<br>$$</p>
 <p>根据同余的基本性质：若 $a \equiv b \pmod p$，则 $ka \equiv kb \pmod p$，得到 $a^{2k+2} \equiv a \pmod p$。</p>
 <p>则 $x^2 &#x3D; (\pm a^{k+1})^2$，所以 $x &#x3D; \pm a^{\frac{p+1}{4}}$。</p>
 <p>那这题就直接出结果了：</p>
@@ -365,12 +366,21 @@
 </ol>
 <p><strong>问：已知 $x \equiv 2 \pmod 5$，$x \equiv 3 \pmod{11}$，$x \equiv 5 \pmod{17}$，求一个整数 a 满足 $x \equiv a \pmod{935}$ 。</strong></p>
 <p>根据中国剩余定理：</p>
-<p>$$<br>\begin{aligned}<br>M &amp;&#x3D; 5\times11\times17 &#x3D; 935 \<br>M_1 &amp;&#x3D; 187,\ m_1 &#x3D; 5 \<br>M_2 &amp;&#x3D; 85,\ m_2 &#x3D; 11 \<br>M_3 &amp;&#x3D; 55,\ m_3 &#x3D; 17<br>\end{aligned}<br>$$</p>
+<p>$$<br>M &#x3D; 5\times11\times17 &#x3D; 935<br>$$</p>
+<p>$$<br>M_1 &#x3D; 187,\ m_1 &#x3D; 5<br>$$</p>
+<p>$$<br>M_2 &#x3D; 85,\ m_2 &#x3D; 11<br>$$</p>
+<p>$$<br>M_3 &#x3D; 55,\ m_3 &#x3D; 17<br>$$</p>
 <p>根据费马小定理：如果 a 不是 p 的倍数且 p 为素数，有 $a^{p-1} \equiv 1 \pmod{p}$ ，那么 $a \cdot a^{p-2} \equiv 1 \pmod{p}$ 。</p>
 <p>求出：</p>
-<p>$$<br>\begin{aligned}<br>t_1 &amp;&#x3D; 187^3 \bmod 5 &#x3D; 3 \<br>t_2 &amp;&#x3D; 85^9 \bmod 11 &#x3D; 7 \<br>t_3 &amp;&#x3D; 55^{15} \bmod 17 &#x3D; 13 \<br>x &amp;&#x3D; 2\cdot 3\cdot 187 + 3\cdot 7\cdot 85 + 5\cdot 13\cdot 55 &#x3D; 6482 \<br>a &amp;&#x3D; 6482 \bmod 935 &#x3D; 872<br>\end{aligned}<br>$$</p>
-<h3 id="Adrien’s-Signs"><a href="#Adrien’s-Signs" class="headerlink" title="Adrien’s Signs"></a>Adrien’s Signs</h3><p>已知题目条件：</p>
-<p>$$<br>\begin{aligned}<br>a &amp;&#x3D; 288260533169915 \<br>p &amp;&#x3D; 1007621497415251 \<br>e &amp;&#x3D; \text{随机整数} \in [1, p] \<br>n &amp;&#x3D; a^e \bmod p<br>\end{aligned}<br>$$</p>
+<p>$$<br>t_1 &#x3D; 187^3 \bmod 5 &#x3D; 3<br>$$</p>
+<p>$$<br>t_2 &#x3D; 85^9 \bmod 11 &#x3D; 7<br>$$</p>
+<p>$$<br>t_3 &#x3D; 55^{15} \bmod 17 &#x3D; 13<br>$$</p>
+<p>$$<br>x &#x3D; 2\cdot 3\cdot 187 + 3\cdot 7\cdot 85 + 5\cdot 13\cdot 55 &#x3D; 6482<br>$$</p>
+<p>$$<br>a &#x3D; 6482 \bmod 935 &#x3D; 872<br>$$</p>
+<h3 id="Adrien’s-Signs"><a href="#Adrien’s-Signs" class="headerlink" title="Adrien’s Signs"></a>Adrien’s Signs</h3><p>已知题目条件，其中 $e$ 是在 $[1, p]$ 区间内取的随机整数：</p>
+<p>$$<br>a &#x3D; 288260533169915<br>$$</p>
+<p>$$<br>p &#x3D; 1007621497415251<br>$$</p>
+<p>$$<br>n &#x3D; a^e \bmod p<br>$$</p>
 <p>若 $b&#x3D;1$，则 $final &#x3D; n$；若 $b&#x3D;0$，则 $final &#x3D; -n \bmod p &#x3D; p-n$。其中 final 数组已知，求 b 序列。</p>
 <p>经过程序判断，a 不是素数，p 是素数，a 与 p 互质。</p>
 </section>

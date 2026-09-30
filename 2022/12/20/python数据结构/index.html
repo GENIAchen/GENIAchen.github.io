@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="When there is a will, there is a way.">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      基础数据结构 | GENIA
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>GENIA</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>基础数据结构</h2>
+  <p class="post-date">2022-12-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="基础数据结构（Python）"><a href="#基础数据结构（Python）" class="headerlink" title="基础数据结构（Python）"></a>基础数据结构（Python）</h2><h3 id="数组（Array）"><a href="#数组（Array）" class="headerlink" title="数组（Array）"></a>数组（Array）</h3><p>一组<strong>连续</strong>的内存空间，用来存储同类型的数据。数组通常用于存储固定大小的序列数据。</p>
+<h4 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h4><p>法一：使用 <code>[]</code> 运算符</p>
+<p>使用 <code>[]</code> 运算符创建一个空列表，然后使用 <code>append()</code> 方法向列表中添加元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个空列表</span></span><br><span class="line">arr = []</span><br><span class="line"><span class="comment"># 向列表中添加元素</span></span><br><span class="line">arr.append(<span class="number">1</span>)</span><br><span class="line">arr.append(<span class="number">2</span>)</span><br><span class="line">arr.append(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(arr)  <span class="comment"># [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>法二：使用 <code>list()</code> 函数</p>
+<p>使用 <code>list()</code> 函数创建一个列表，并在括号内指定列表中的元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 list() 函数创建列表</span></span><br><span class="line">arr = <span class="built_in">list</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(arr)  <span class="comment"># [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>法三：使用列表推导式</p>
+<p>可以使用列表推导式快速创建一个列表，语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#[表达式 for 变量 in 序列]</span></span><br><span class="line"><span class="comment">#例如，可以使用列表推导式创建一个从 1 到 10 的数字列表。</span></span><br><span class="line">arr = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line"><span class="built_in">print</span>(arr)  <span class="comment"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span></span><br></pre></td></tr></table></figure>
+
+<p>法四：使用 <code>numpy</code> 库</p>
+<p>使用 <code>import numpy as np</code> 命令导入<code>numpy</code> 库，并使用 <code>np.array()</code> 函数创建数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例如，可以使用 numpy 库创建一个从 1 到 10 的数字数组。</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br><span class="line"><span class="built_in">print</span>(arr)  <span class="comment"># [ 1  2  3  4  5  6  7  8  9 10]</span></span><br><span class="line"><span class="comment">#可以使用 np.zeros() 函数创建一个指定大小的全 0 数组</span></span><br><span class="line"><span class="comment">#使用 np.ones() 函数创建一个指定大小的全 1 数组。</span></span><br><span class="line"><span class="comment"># 创建一个 3x3 的全 0 数组</span></span><br><span class="line">arr = np.zeros((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(arr)</span><br><span class="line"><span class="comment"># 创建一个 3x3 的全 1 数组</span></span><br><span class="line">arr = np.ones((<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="链表（Linked-List）"><a href="#链表（Linked-List）" class="headerlink" title="链表（Linked List）"></a>链表（Linked List）</h3><p>由若干个节点组成的数据结构，每个节点包含<strong>数据和指向下一个节点的指针</strong>。链表的优点在于可以动态地增加或删除节点，不需要预先确定数据的个数。</p>
+<h4 id="链表的优缺点："><a href="#链表的优缺点：" class="headerlink" title="链表的优缺点："></a>链表的优缺点：</h4><p>链表的优点在于可以快速地在序列的开头或结尾添加或删除元素，不必对整个序列进行重新排序。</p>
+<p>链表的缺点在于无法快速地访问序列中的特定位置，如果需要访问序列中间的元素，需要从头开始逐个遍历。因此，在查找和访问序列中的元素时，链表的性能较差。</p>
+<p>如果需要快速访问序列中的元素，可以使用数组或者其他数据结构，例如树或哈希表。</p>
+<h4 id="使用类来实现："><a href="#使用类来实现：" class="headerlink" title="使用类来实现："></a>使用类来实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data=<span class="literal">None</span>, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span><br><span class="line">        self.data = data</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinkedList</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.head = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">append</span>(<span class="params">self, data</span>):</span><br><span class="line">        new_node = Node(data)</span><br><span class="line">        <span class="keyword">if</span> self.head <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            self.head = new_node</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        current = self.head</span><br><span class="line">        <span class="keyword">while</span> current.<span class="built_in">next</span>:</span><br><span class="line">            current = current.<span class="built_in">next</span></span><br><span class="line">        current.<span class="built_in">next</span> = new_node</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">print_list</span>(<span class="params">self</span>):</span><br><span class="line">        current = self.head</span><br><span class="line">        <span class="keyword">while</span> current:</span><br><span class="line">            <span class="built_in">print</span>(current.data)</span><br><span class="line">            current = current.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+
+<p>使用这个链表类，可以创建一个新的链表，并向其中添加节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的链表</span></span><br><span class="line">llist = LinkedList()</span><br><span class="line"><span class="comment"># 向链表中添加节点</span></span><br><span class="line">llist.append(<span class="string">&quot;A&quot;</span>)</span><br><span class="line">llist.append(<span class="string">&quot;B&quot;</span>)</span><br><span class="line">llist.append(<span class="string">&quot;C&quot;</span>)</span><br><span class="line"><span class="comment"># 打印链表中的所有节点</span></span><br><span class="line">llist.print_list()  <span class="comment"># A B C</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，我们创建了两个类：<code>Node</code> 类表示单个节点，<code>LinkedList</code> 类表示链表。</p>
+<p><code>Node</code> 类包含两个属性：<code>data</code> 和 <code>next</code>。<code>data</code> 属性用于存储节点的数据，<code>next</code> 属性用于存储下一个节点的引用。</p>
+<p><code>LinkedList</code> 类包含一个属性 <code>head</code>，用于存储链表的头节点。它还包含两个方法：<code>append()</code> 方法用于向链表中添加新的节点，<code>print_list()</code> 方法用于打印链表中的所有节点。</p>
+<h4 id="为链表添加一些功能："><a href="#为链表添加一些功能：" class="headerlink" title="为链表添加一些功能："></a>为链表添加一些功能：</h4><p>可以使用以下方法来添加查找、删除、反转链表的方法：</p>
+<p>1.查找节点：可以添加一个 <code>find()</code> 方法，该方法接收一个数据值作为参数，并在链表中查找与该数据值相同的节点。如果找到了该节点，返回该节点；如果没有找到，返回 <code>None</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">find</span>(<span class="params">self, data</span>):</span><br><span class="line">    current = self.head</span><br><span class="line">    <span class="keyword">while</span> current <span class="keyword">and</span> current.data != data:</span><br><span class="line">        current = current.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> current</span><br></pre></td></tr></table></figure>
+
+<p>2.删除节点：可以添加一个 <code>delete()</code> 方法，该方法接收一个数据值作为参数，并在链表中查找与该数据值相同的节点，然后删除该节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">self, data</span>):</span><br><span class="line">    current = self.head</span><br><span class="line">    previous = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> current <span class="keyword">and</span> current.data != data:</span><br><span class="line">        previous = current</span><br><span class="line">        current = current.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">if</span> current <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> previous <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        self.head = current.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        previous.<span class="built_in">next</span> = current.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+
+<p>3.反转链表：可以添加一个 <code>reverse()</code> 方法，该方法用于将链表中的节点反转。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">reverse</span>(<span class="params">self</span>):</span><br><span class="line">    current = self.head</span><br><span class="line">    previous = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> current:</span><br><span class="line">        <span class="built_in">next</span> = current.<span class="built_in">next</span></span><br><span class="line">        current.<span class="built_in">next</span> = previous</span><br><span class="line">        previous = current</span><br><span class="line">        current = <span class="built_in">next</span></span><br><span class="line">    self.head = previous</span><br></pre></td></tr></table></figure>
+
+<h3 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h3><p>一种<strong>后进先出</strong>（Last In First Out, LIFO）的数据结构，常用于实现程序的调用和返回、表达式求值等场景。</p>
+<p>栈可以用于存储程序的执行过程中的临时数据，也可以用于实现递归算法。</p>
+<p>栈的操作非常简单但是性能较差，如果需要快速访问序列中的元素，可以使用数组或队列等数据结构。</p>
+<h4 id="用列表实现："><a href="#用列表实现：" class="headerlink" title="用列表实现："></a>用列表实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stack = []</span><br><span class="line"><span class="comment"># 入栈</span></span><br><span class="line">stack.append(<span class="number">1</span>)</span><br><span class="line">stack.append(<span class="number">2</span>)</span><br><span class="line">stack.append(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 出栈</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="用元组实现："><a href="#用元组实现：" class="headerlink" title="用元组实现："></a>用元组实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">stack = ()</span><br><span class="line"><span class="comment"># 入栈</span></span><br><span class="line">stack += (<span class="number">1</span>,)</span><br><span class="line">stack += (<span class="number">2</span>,)</span><br><span class="line">stack += (<span class="number">3</span>,)</span><br><span class="line"><span class="comment"># 出栈</span></span><br><span class="line"><span class="built_in">print</span>(stack[-<span class="number">1</span>])  <span class="comment"># 3</span></span><br><span class="line">stack = stack[:-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(stack[-<span class="number">1</span>])  <span class="comment"># 2</span></span><br><span class="line">stack = stack[:-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(stack[-<span class="number">1</span>])  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+<p>元组的第一个元素是栈底元素，最后一个元素是栈顶元素。使用分片可以删除栈顶元素。</p>
+<h4 id="用类实现："><a href="#用类实现：" class="headerlink" title="用类实现："></a>用类实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Stack</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.items = []</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item</span>):</span><br><span class="line">        self.items.append(item)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.items.pop()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_empty</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.items</span><br><span class="line">stack = Stack()</span><br><span class="line"><span class="comment"># 入栈</span></span><br><span class="line">stack.push(<span class="number">1</span>)</span><br><span class="line">stack.push(<span class="number">2</span>)</span><br><span class="line">stack.push(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 出栈</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 3</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(stack.pop())  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+<p>定义了一个 <code>Stack</code> 类，包含三个方法：<code>push()</code> 方法用于向栈中添加新的元素，<code>pop()</code> 方法用于弹出栈顶元素，<code>is_empty()</code> 方法用于判断栈是否为空。</p>
+<h3 id="队列（Queue）"><a href="#队列（Queue）" class="headerlink" title="队列（Queue）"></a>队列（Queue）</h3><p>一种<strong>先进先出</strong>（First In First Out, FIFO）的数据结构，常用于模拟排队等场景。队列可以用于存储程序的执行过程中的临时数据，也可以用于实现广度优先搜索算法。</p>
+<p>队列的性能较差，如果需要快速在序列的开头或结尾添加或删除元素，可以使用栈或链表等数据结构。</p>
+<h4 id="用列表实现：-1"><a href="#用列表实现：-1" class="headerlink" title="用列表实现："></a>用列表实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">queue = []</span><br><span class="line"><span class="comment"># 入队</span></span><br><span class="line">queue.append(<span class="number">1</span>)</span><br><span class="line">queue.append(<span class="number">2</span>)</span><br><span class="line">queue.append(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 出队</span></span><br><span class="line"><span class="built_in">print</span>(queue.pop(<span class="number">0</span>))  <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">print</span>(queue.pop(<span class="number">0</span>))  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(queue.pop(<span class="number">0</span>))  <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="用元组实现：-1"><a href="#用元组实现：-1" class="headerlink" title="用元组实现："></a>用元组实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">queue = ()</span><br><span class="line"><span class="comment"># 入队</span></span><br><span class="line">queue += (<span class="number">1</span>,)</span><br><span class="line">queue += (<span class="number">2</span>,)</span><br><span class="line">queue += (<span class="number">3</span>,)</span><br><span class="line"><span class="comment"># 出队</span></span><br><span class="line"><span class="built_in">print</span>(queue[<span class="number">0</span>])  <span class="comment"># 1</span></span><br><span class="line">queue = queue[<span class="number">1</span>:]</span><br><span class="line"><span class="built_in">print</span>(queue[<span class="number">0</span>])  <span class="comment"># 2</span></span><br><span class="line">queue = queue[<span class="number">1</span>:]</span><br><span class="line"><span class="built_in">print</span>(queue[<span class="number">0</span>])  <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="用类实现：-1"><a href="#用类实现：-1" class="headerlink" title="用类实现："></a>用类实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.items = []</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">enqueue</span>(<span class="params">self, item</span>):</span><br><span class="line">        self.items.append(item)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dequeue</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.items.pop(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_empty</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.items</span><br><span class="line"><span class="comment"># 使用类实现队列</span></span><br><span class="line">queue = Queue()</span><br><span class="line"><span class="comment"># 入队</span></span><br><span class="line">queue.enqueue(<span class="number">1</span>)</span><br><span class="line">queue.enqueue(<span class="number">2</span>)</span><br><span class="line">queue.enqueue(<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 出队</span></span><br><span class="line"><span class="built_in">print</span>(queue.dequeue())  <span class="comment"># 1</span></span><br><span class="line"><span class="built_in">print</span>(queue.dequeue())  <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(queue.dequeue())  <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+
+<p>定义了一个 <code>Queue</code> 类，包含三个方法：<code>enqueue()</code> 方法用于向队列中添加新的元素，<code>dequeue()</code> 方法用于弹出队列的第一个元素，<code>is_empty()</code> 方法用于判断队列是否为空。</p>
+<h4 id="通过python内置模块实现："><a href="#通过python内置模块实现：" class="headerlink" title="通过python内置模块实现："></a>通过python内置模块实现：</h4><p>Python 提供内置的队列模块 <code>queue</code>，可以用来实现多线程编程中的同步机制。这个模块提供了 <code>Queue</code> 类、<code>LifoQueue</code> 类和 <code>PriorityQueue</code> 类等，可以用于实现不同的队列类型。</p>
+<p>例如，可以使用 <code>Queue</code> 类来实现多线程的生产者-消费者模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"><span class="comment"># 创建队列</span></span><br><span class="line">q = queue.Queue()</span><br><span class="line"><span class="comment"># 创建生产者线程</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">producer</span>():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        q.put(i)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;生产了一个数字：<span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="comment"># 创建消费者线程</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consumer</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        item = q.get()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;消费了一个数字：<span class="subst">&#123;item&#125;</span>&#x27;</span>)</span><br><span class="line">        q.task_done()</span><br><span class="line"><span class="comment"># 创建并启动线程</span></span><br><span class="line">t1 = threading.Thread(target=producer)</span><br><span class="line">t2 = threading.Thread(target=consumer)</span><br><span class="line">t1.start()</span><br><span class="line">t2.start()</span><br><span class="line"><span class="comment"># 等待队列为空</span></span><br><span class="line">q.join()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;完成！&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>创建了两个线程：一个生产者线程和一个消费者线程。生产者线程向队列中添加数字，消费者线程从队列中取出数字并打印。</p>
+<h3 id="树（Tree）"><a href="#树（Tree）" class="headerlink" title="树（Tree）"></a>树（Tree）</h3><p>由若干个<strong>节点</strong>组成的数据结构，每个节点有零个或多个子节点。树通常用于表示层级关系、存储有序数据等。常见的树包括二叉树、平衡树、Trie树等。</p>
+<h4 id="树的不同遍历方式："><a href="#树的不同遍历方式：" class="headerlink" title="树的不同遍历方式："></a>树的不同遍历方式：</h4><p>主要包括深度优先遍历和广度优先遍历。</p>
+<p><strong>深度优先遍历</strong>是指从根节点开始，先递归遍历左子树，再递归遍历右子树。深度优先遍历的常用方法有先序遍历、中序遍历、后序遍历。</p>
+<p>1.先序遍历（Pre-order Traversal）: 先访问根节点，再递归地访问左子树，最后递归地访问右子树。</p>
+<p>2.中序遍历（In-order Traversal）: 先递归地访问左子树，再访问根节点，最后递归地访问右子树。</p>
+<p>3.后序遍历（Post-order Traversal）: 先递归地访问左子树，再递归地访问右子树，最后访问根节点。</p>
+<p><strong>广度优先遍历</strong>是指从根节点开始，按照层级顺序依次遍历每个节点。常用的广度优先遍历方法是层序遍历。</p>
+<p>4.层序遍历（Level-order Traversal）: 按照树的层级顺序，从上到下、从左到右地访问每个节点。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">  / \</span><br><span class="line"> <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">/   / \</span><br><span class="line"><span class="number">4</span>   <span class="number">5</span>   <span class="number">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">先序遍历：1, 2, 4, 3, 5, 6</span></span><br><span class="line"><span class="string">中序遍历：4, 2, 1, 5, 3, 6</span></span><br><span class="line"><span class="string">后序遍历：4, 2, 5, 6, 3, 1</span></span><br><span class="line"><span class="string">层序遍历：1, 2, 3, 4, 5, 6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>不同的遍历方式在不同的应用场景中有着不同的用途。例如，在二叉搜索树中，中序遍历可以用来得到有序的节点序列。在二叉树的某些应用中，后序遍历可以用来释放子树的资源，以便在释放根节点之前可以访问它的子节点。</p>
+<h4 id="使用类来实现：-1"><a href="#使用类来实现：-1" class="headerlink" title="使用类来实现："></a>使用类来实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TreeNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, val=<span class="literal">None</span></span>):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line"><span class="comment"># 使用类实现树</span></span><br><span class="line">root = TreeNode(<span class="number">1</span>)</span><br><span class="line">root.left = TreeNode(<span class="number">2</span>)</span><br><span class="line">root.right = TreeNode(<span class="number">3</span>)</span><br><span class="line">root.left.left = TreeNode(<span class="number">4</span>)</span><br><span class="line">root.left.right = TreeNode(<span class="number">5</span>)</span><br><span class="line">root.right.left = TreeNode(<span class="number">6</span>)</span><br><span class="line">root.right.right = TreeNode(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<p>定义了一个 <code>TreeNode</code> 类，表示树的节点。每个节点都有一个值（<code>val</code>）和两个子节点（<code>left</code> 和 <code>right</code>）。</p>
+<p>使用类实现树的好处在于可以在类中添加方法，用于实现树的遍历、查找、插入、删除等操作。</p>
+<p>1.添加 <code>preorder_traversal()</code> 方法来实现树的先序遍历:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">def</span> <span class="title function_">preorder_traversal</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        res.append(self.val)</span><br><span class="line">        <span class="keyword">if</span> self.left:</span><br><span class="line">            res += self.left.preorder_traversal()</span><br><span class="line">        <span class="keyword">if</span> self.right:</span><br><span class="line">            res += self.right.preorder_traversal()</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 使用类实现树的先序遍历</span></span><br><span class="line">root = TreeNode(<span class="number">1</span>)</span><br><span class="line">root.left = TreeNode(<span class="number">2</span>)</span><br><span class="line">root.right = TreeNode(<span class="number">3</span>)</span><br><span class="line">root.left.left = TreeNode(<span class="number">4</span>)</span><br><span class="line">root.left.right = TreeNode(<span class="number">5</span>)</span><br><span class="line">root.right.left = TreeNode(<span class="number">6</span>)</span><br><span class="line">root.right.right = TreeNode(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(root.preorder_traversal())  <span class="comment"># [1, 2, 4, 5, 3, 6, 7]</span></span><br></pre></td></tr></table></figure>
+
+<p>这个方法递归遍历每个节点的左子树和右子树，并将每个节点的值存储在结果列表中。</p>
+<p>2.添加 <code>inorder_traversal()</code> 方法来实现树的中序遍历:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">def</span> <span class="title function_">inorder_traversal</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> self.left:</span><br><span class="line">            res += self.left.inorder_traversal()</span><br><span class="line">        res.append(self.val)</span><br><span class="line">        <span class="keyword">if</span> self.right:</span><br><span class="line">            res += self.right.inorder_traversal()</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 使用类实现树的中序遍历</span></span><br><span class="line">root = TreeNode(<span class="number">1</span>)</span><br><span class="line">root.left = TreeNode(<span class="number">2</span>)</span><br><span class="line">root.right = TreeNode(<span class="number">3</span>)</span><br><span class="line">root.left.left = TreeNode(<span class="number">4</span>)</span><br><span class="line">root.left.right = TreeNode(<span class="number">5</span>)</span><br><span class="line">root.right.left = TreeNode(<span class="number">6</span>)</span><br><span class="line">root.right.right = TreeNode(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(root.inorder_traversal())  <span class="comment"># [4, 2, 5, 1, 6, 3, 7]</span></span><br></pre></td></tr></table></figure>
+
+<p>递归遍历每个节点的左子树，然后处理当前节点的值，最后遍历每个节点的右子树。</p>
+<p>3.添加<code>postorder_traversal()</code> 方法来实现树的后序遍历</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">def</span> <span class="title function_">postorder_traversal</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> self.left:</span><br><span class="line">            res += self.left.postorder_traversal()</span><br><span class="line">        <span class="keyword">if</span> self.right:</span><br><span class="line">            res += self.right.postorder_traversal()</span><br><span class="line">        res.append(self.val)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 使用类实现树的后序遍历</span></span><br><span class="line">root = TreeNode(<span class="number">1</span>)</span><br><span class="line">root.left = TreeNode(<span class="number">2</span>)</span><br><span class="line">root.right = TreeNode(<span class="number">3</span>)</span><br><span class="line">root.left.left = TreeNode(<span class="number">4</span>)</span><br><span class="line">root.left.right = TreeNode(<span class="number">5</span>)</span><br><span class="line">root.right.left = TreeNode(<span class="number">6</span>)</span><br><span class="line">root.right.right = TreeNode(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(root.postorder_traversal())  <span class="comment"># [4, 5, 2, 6, 7, 3, 1]</span></span><br></pre></td></tr></table></figure>
+
+<p>递归遍历每个节点的左子树和右子树，最后处理当前节点的值。</p>
+<p>4.添加<code>level_order_traversal()</code> 方法来实现树的层序遍历</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">def</span> <span class="title function_">level_order_traversal</span>(<span class="params">self</span>):</span><br><span class="line">        res = []</span><br><span class="line">        q = [self]</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            node = q.pop(<span class="number">0</span>)</span><br><span class="line">            res.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                q.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 使用类实现树的层序遍历</span></span><br><span class="line">root = TreeNode(<span class="number">1</span>)</span><br><span class="line">root.left = TreeNode(<span class="number">2</span>)</span><br><span class="line">root.right = TreeNode(<span class="number">3</span>)</span><br><span class="line">root.left.left = TreeNode(<span class="number">4</span>)</span><br><span class="line">root.left.right = TreeNode(<span class="number">5</span>)</span><br><span class="line">root.right.left = TreeNode(<span class="number">6</span>)</span><br><span class="line">root.right.right = TreeNode(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(root.level_order_traversal())  <span class="comment"># [1, 2, 3, 4, 5, 6, 7]</span></span><br></pre></td></tr></table></figure>
+
+<p>使用一个队列来存储每一层的节点，每次取出队列中的第一个节点并将其子节点加入队列。</p>
+<h3 id="哈希表（Hash-Table）"><a href="#哈希表（Hash-Table）" class="headerlink" title="哈希表（Hash Table）"></a>哈希表（Hash Table）</h3><p>是一种用于快速查找的数据结构。它通过计算数据的哈希值，将数据存储在表中的某个位置。哈希表常用于实现字典、集合等数据类型。</p>
+<p>哈希表的基本原理是：使用哈希函数将数据映射到表中的某个位置，并使用链表来解决冲突。哈希函数计算出的值称为哈希值，哈希表中的每个位置称为桶。</p>
+<p>哈希表的优点在于查找的时间复杂度为O(1)，但是如果哈希函数不良或者数据分布不均匀，哈希表的性能可能会降低。</p>
+<h4 id="哈希值及计算"><a href="#哈希值及计算" class="headerlink" title="哈希值及计算"></a>哈希值及计算</h4><p>哈希值是指将数据通过哈希函数转换成固定长度的哈希码的过程，这个过程称为哈希。哈希值可以用来比较数据之间的相似度或者标识数据，常用于数据存储、检索和加密等方面。</p>
+<p>Python 语言提供了内置函数 <code>hash()</code> 来计算哈希值。可以使用如下代码计算任意数据的哈希值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash_value = <span class="built_in">hash</span>(data)</span><br></pre></td></tr></table></figure>
+
+<p>由于哈希函数是把任意长度的数据转换成固定长度的哈希码，因此不同的数据可能会得到相同的哈希值，这种现象称为哈希冲突。为了尽量减少哈希冲突的发生，Python 中的 hash() 函数针对不同的数据类型使用了不同的哈希算法。</p>
+<p>除了使用 Python 中的内置函数 <code>hash()</code> 来计算哈希值之外，你还可以使用 Python 中的哈希函数库，例如 <code>hashlib</code> 模块。<code>hashlib</code> 模块提供了各种常见的哈希算法，例如 MD5、SHA-1 等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="comment">#计算字符串的 MD5 哈希值</span></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(<span class="string">&#x27;hello&#x27;</span>.encode())</span><br><span class="line">hash_value = md5.hexdigest()</span><br><span class="line"><span class="comment">#计算字符串的 SHA-1 哈希值</span></span><br><span class="line">sha1 = hashlib.sha1()</span><br><span class="line">sha1.update(<span class="string">&#x27;hello&#x27;</span>.encode())</span><br><span class="line">hash_value = sha1.hexdigest()</span><br><span class="line"><span class="comment">#计算字符串的 SHA-256 哈希值</span></span><br><span class="line">sha256 = hashlib.sha256()</span><br><span class="line">sha256.update(<span class="string">&#x27;hello&#x27;</span>.encode())</span><br><span class="line">hash_value = sha256.hexdigest()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：使用 <code>hashlib</code> 模块计算哈希值时，必须将字符串编码成二进制数据，然后使用 update() 方法更新哈希值，最后使用 <code>hexdigest()</code> 方法获取哈希值。</p>
+<h4 id="字典：现成的哈希表"><a href="#字典：现成的哈希表" class="headerlink" title="字典：现成的哈希表"></a>字典：现成的哈希表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建</span></span><br><span class="line">scores = &#123;<span class="string">&#x27;Alice&#x27;</span>: <span class="number">95</span>, <span class="string">&#x27;Bob&#x27;</span>: <span class="number">75</span>, <span class="string">&#x27;Charlie&#x27;</span>: <span class="number">85</span>&#125;</span><br><span class="line"><span class="comment">#访问</span></span><br><span class="line">score = scores[<span class="string">&#x27;Alice&#x27;</span>]  <span class="comment"># score 等于 95</span></span><br><span class="line"><span class="comment">#更新</span></span><br><span class="line">scores[<span class="string">&#x27;Alice&#x27;</span>] = <span class="number">99</span>  <span class="comment"># 将 Alice 的成绩更新为 99</span></span><br></pre></td></tr></table></figure>
+
+<p>字典的优点之一是允许使用任意的不可变类型作为键。因此可以使用字符串、数字、元组等类型作为键。</p>
+<p>需要注意，字典并不是按照插入顺序来存储数据的。如果需要按照插入顺序来存储数据，可以使用 Python 的内置数据类型 <code>OrderedDict</code>。</p>
+<h4 id="用-set-实现"><a href="#用-set-实现" class="headerlink" title="用 set 实现"></a>用 set 实现</h4><p><strong>set 类型</strong>是一种无序且不重复的数据集合，可以使用 set 来快速查找数据是否存在，也可以使用 set 来去重。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建一个set</span></span><br><span class="line">s = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">#添加元素</span></span><br><span class="line">s.add(<span class="number">4</span>)</span><br><span class="line"><span class="comment">#删除元素</span></span><br><span class="line">s.remove(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#求并集</span></span><br><span class="line">s2 = <span class="built_in">set</span>([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">s3 = s1.union(s2)  <span class="comment"># s3 等于 set([1, 2, 3, 4, 5])</span></span><br><span class="line"><span class="comment">#求交集</span></span><br><span class="line">s3 = s1.intersection(s2)  <span class="comment"># s3 等于 set([3])</span></span><br><span class="line"><span class="comment">#求差集</span></span><br><span class="line">s3 = s1.difference(s2)  <span class="comment"># s3 等于 set([1, 2])</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：set 类型只能存储可哈希的数据类型，例如数字、字符串、元组等。不能使用 set 存储列表、字典或其他可变的数据类型，因为这些数据类型的哈希值是可变的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建</span></span><br><span class="line">scores = &#123;(<span class="string">&#x27;Alice&#x27;</span>, <span class="number">95</span>), (<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>), (<span class="string">&#x27;Charlie&#x27;</span>, <span class="number">85</span>)&#125;</span><br><span class="line"><span class="comment">#查找</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;Alice&#x27;</span>, <span class="number">95</span>) <span class="keyword">in</span> scores:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Alice has score 95&#x27;</span>)</span><br><span class="line"><span class="comment">#更新</span></span><br><span class="line">scores.remove((<span class="string">&#x27;Alice&#x27;</span>, <span class="number">95</span>))</span><br><span class="line">scores.add((<span class="string">&#x27;Alice&#x27;</span>, <span class="number">99</span>))</span><br></pre></td></tr></table></figure>
+
+<p>相比于字典，set类型无法查找指定的键对应的值、无法按照顺序遍历哈希表中的数据等。</p>
+<h4 id="使用-Python-的内置模块-collections-实现"><a href="#使用-Python-的内置模块-collections-实现" class="headerlink" title="使用 Python 的内置模块 collections 实现"></a>使用 Python 的内置模块 collections 实现</h4><p>Python 中的 collections 模块提供了一系列的容器数据类型，其中包括哈希表类型。相比于字典，可以赋予哈希表一些特殊的功能。</p>
+<h5 id="1-使用-collections-模块中的字典子类型-defaultdict-实现"><a href="#1-使用-collections-模块中的字典子类型-defaultdict-实现" class="headerlink" title="1.使用 collections 模块中的字典子类型 defaultdict 实现"></a>1.使用 collections 模块中的字典子类型 <code>defaultdict</code> 实现</h5><p>虽与字典类型类似，但是 <code>defaultdict</code> <strong>可以设置默认值</strong>。如果在访问不存在的键时，<code>defaultdict</code> 会自动创建一个新的键值对，并将默认值赋给新的键。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="comment">#创建</span></span><br><span class="line">d = defaultdict(<span class="built_in">int</span>)  <span class="comment"># 创建一个默认值为 0 的 defaultdict</span></span><br><span class="line"><span class="comment">#访问</span></span><br><span class="line">d[<span class="string">&#x27;a&#x27;</span>] = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;a&#x27;</span>])  <span class="comment"># 输出 1</span></span><br><span class="line"><span class="built_in">print</span>(d[<span class="string">&#x27;b&#x27;</span>])  <span class="comment"># 输出 0，b 键不存在，defaultdict 会自动创建一个新的键值对，并将默认值赋给 b 键</span></span><br><span class="line"><span class="comment">#删除</span></span><br><span class="line"><span class="keyword">del</span> d[<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line"><span class="comment">#遍历</span></span><br><span class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> d.items():</span><br><span class="line">    <span class="built_in">print</span>(key, value)</span><br><span class="line"><span class="comment">#查找</span></span><br><span class="line"><span class="keyword">if</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">in</span> d:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a exists in d&#x27;</span>)</span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">d[<span class="string">&#x27;a&#x27;</span>] = <span class="number">2</span>  <span class="comment"># 修改 a 键对应的值为 2</span></span><br><span class="line"><span class="comment">#获取所有键值对</span></span><br><span class="line"><span class="built_in">print</span>(d.items())  <span class="comment"># 输出 [(&#x27;a&#x27;, 2)]</span></span><br><span class="line"><span class="comment">#获取所有键</span></span><br><span class="line"><span class="built_in">print</span>(d.keys())  <span class="comment"># 输出 [&#x27;a&#x27;]</span></span><br><span class="line"><span class="comment">#获取所有值</span></span><br><span class="line"><span class="built_in">print</span>(d.values())  <span class="comment"># 输出 [2]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-使用-collections-模块中的字典子类型Counter实现"><a href="#2-使用-collections-模块中的字典子类型Counter实现" class="headerlink" title="2.使用 collections 模块中的字典子类型Counter实现"></a>2.使用 collections 模块中的字典子类型<code>Counter</code>实现</h5><p>相比于字典，Counter 可以用来统计数据出现的次数。它还支持多种常用的统计方法，例如求和、求平均值、求标准差等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="comment">#创建</span></span><br><span class="line">c = Counter([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">#访问</span></span><br><span class="line"><span class="built_in">print</span>(c[<span class="number">1</span>])  <span class="comment"># 输出 1</span></span><br><span class="line"><span class="built_in">print</span>(c[<span class="number">2</span>])  <span class="comment"># 输出 2</span></span><br><span class="line"><span class="built_in">print</span>(c[<span class="number">3</span>])  <span class="comment"># 输出 3</span></span><br><span class="line"><span class="comment">#统计数据出现的次数</span></span><br><span class="line"><span class="built_in">print</span>(c.most_common())  </span><br><span class="line"><span class="comment"># 输出 [(3, 3), (2, 2), (1, 1)]，表示数字 3 出现了 3 次，数字 2 出现了 2 次，数字 1 出现了 1 次</span></span><br><span class="line"><span class="comment">#求和</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>(c.values()))  <span class="comment"># 输出 6，表示 1+2+2+3+3+3=6</span></span><br><span class="line"><span class="comment">#求平均值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>(c.values()) / <span class="built_in">len</span>(c))  <span class="comment"># 输出 2.0，表示 (1+2+2+3+3+3)/6=2</span></span><br><span class="line"><span class="comment">#求标准差</span></span><br><span class="line"><span class="keyword">import</span> statistics</span><br><span class="line"><span class="built_in">print</span>(statistics.stdev(c.values()))  <span class="comment"># 输出 1.0，表示标准差为 1.0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#存储</span></span><br><span class="line">scores = [[<span class="string">&#x27;Alice&#x27;</span>, <span class="number">95</span>], [<span class="string">&#x27;Bob&#x27;</span>, <span class="number">75</span>], [<span class="string">&#x27;Charlie&#x27;</span>, <span class="number">85</span>]]</span><br><span class="line"><span class="comment">#访问</span></span><br><span class="line"><span class="keyword">for</span> student, score <span class="keyword">in</span> scores:</span><br><span class="line">    <span class="keyword">if</span> student == <span class="string">&#x27;Alice&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(score)  <span class="comment"># 输出 95</span></span><br><span class="line"><span class="comment">#更新</span></span><br><span class="line"><span class="keyword">for</span> i, (student, score) <span class="keyword">in</span> <span class="built_in">enumerate</span>(scores):</span><br><span class="line">    <span class="keyword">if</span> student == <span class="string">&#x27;Alice&#x27;</span>:</span><br><span class="line">        scores[i] = [<span class="string">&#x27;Alice&#x27;</span>, <span class="number">99</span>]  <span class="comment"># 将 Alice 的成绩更新为 99</span></span><br></pre></td></tr></table></figure>
+
+<p>手动实现哈希表需要注意一些细节，例如哈希函数的设计、冲突的解决方法等。</p>
+<h3 id="图（Graph）"><a href="#图（Graph）" class="headerlink" title="图（Graph）"></a>图（Graph）</h3><p>图由节点（称为顶点）和边组成。边表示两个节点之间的关系，并可以具有不同的权值或负载。</p>
+<p>图可以有向或无向。有向图中，边有方向，即它从一个节点指向另一个节点。无向图中，边没有方向，即它们连接两个节点，但不指向任何一个节点。</p>
+<p>图也可以是稠密的或稀疏的。稠密图中，大多数节点都是相互连接的，而稀疏图中，节点之间的连接相对较少。</p>
+<p>图在许多领域中都很有用，例如社交网络分析、交通网络建模、计算机网络等。它们可以用于查找最短路径、求解最小生成树、模拟货运路线等问题。</p>
+<p>图可以使用多种数据结构来存储，如邻接矩阵、邻接表、边集数组和边列表。其中邻接矩阵和邻接表是较常用的两种结构。</p>
+<p><strong>邻接矩阵</strong>是一个二维数组，其中第<code>i</code>行第<code>j</code>列的元素表示节点<code>i</code>和节点<code>j</code>之间是否存在边。如果存在，则值为1，否则为0。邻接矩阵适用于稠密图，其中大多数节点都有边相连。它可以很快地查找两个节点之间是否存在边，但需要较多的存储空间。</p>
+<p><strong>邻接表</strong>是一个数组，其中的每个元素都是一个链表，表示与该节点相连的所有节点。邻接表适用于稀疏图，其中节点之间的连接相对较少。它不需要像邻接矩阵那样多的存储空间，但查找特定边所需的时间可能会稍长。</p>
+<p>如果需要对图进行更复杂的操作，可以使用 Python 的第三方库，例如 <code>NetworkX</code>。</p>
+<h4 id="使用字典（邻接表）存储"><a href="#使用字典（邻接表）存储" class="headerlink" title="使用字典（邻接表）存储"></a>使用字典（邻接表）存储</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph = &#123;</span><br><span class="line">    <span class="string">&#x27;A&#x27;</span>: [<span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;B&#x27;</span>: [<span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;C&#x27;</span>: [<span class="string">&#x27;D&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;D&#x27;</span>: [<span class="string">&#x27;C&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;E&#x27;</span>: [<span class="string">&#x27;F&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;F&#x27;</span>: [<span class="string">&#x27;C&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#图中有 6 个节点（A、B、C、D、E 和 F）和 7 条边</span></span><br></pre></td></tr></table></figure>
+
+<p>字典中的每个键都是一个节点，对应的值是连接到该节点的其他节点的列表。</p>
+<h4 id="使用列表（邻接矩阵）存储"><a href="#使用列表（邻接矩阵）存储" class="headerlink" title="使用列表（邻接矩阵）存储"></a>使用列表（邻接矩阵）存储</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph = [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">]</span><br><span class="line">图中有 <span class="number">6</span> 个节点（<span class="number">0</span>、<span class="number">1</span>、<span class="number">2</span>、<span class="number">3</span>、<span class="number">4</span> 和 <span class="number">5</span>）和 <span class="number">7</span> 条边</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆（Heap）"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h3><p>堆是一种特殊的树形数据结构，它满足以下性质：</p>
+<ul>
+<li>堆是一颗完全二叉树，也就是说，除了最后一层，其他层的节点都是满的；最后一层的节点都靠左对齐。</li>
+<li>堆分为两种：最大堆和最小堆。最大堆的性质是，任意一个节点的值都大于等于其子节点的值；最小堆的性质是，任意一个节点的值都小于等于其子节点的值。</li>
+</ul>
+<p>堆通常用数组来实现。在堆中，第 $i$ 个元素的左子节点的索引是 $2i+1$，右子节点的索引是 $2i+2$，父节点的索引是 $\lfloor \frac{i-1}{2} \rfloor$。</p>
+<p>堆常用于优先队列，也常用于排序。例如，可以使用堆排序算法来对数组进行排序。堆排序的时间复杂度是 $O(nlogn)$。</p>
+<h4 id="使用堆来实现优先队列"><a href="#使用堆来实现优先队列" class="headerlink" title="使用堆来实现优先队列"></a>使用堆来实现优先队列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PriorityQueue</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.heap = []</span><br><span class="line">        self.index = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, item, priority</span>):</span><br><span class="line">        <span class="comment"># 将新元素插入堆中</span></span><br><span class="line">        self.heap.append((priority, self.index, item))</span><br><span class="line">        self.index += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 将新元素上浮到合适的位置</span></span><br><span class="line">        self._float_up(<span class="built_in">len</span>(self.heap) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 将堆顶元素弹出</span></span><br><span class="line">        top_item = self.heap[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 将堆最后一个元素移到堆顶，然后将其下沉到合适的位置</span></span><br><span class="line">        self.heap[<span class="number">0</span>] = self.heap[-<span class="number">1</span>]</span><br><span class="line">        self.heap.pop()</span><br><span class="line">        self._float_down(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> top_item</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_float_up</span>(<span class="params">self, index</span>):</span><br><span class="line">        <span class="comment"># 如果父节点的优先级比当前节点低，则将父节点下沉，并将当前节点上浮</span></span><br><span class="line">        parent = (index - <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> index &gt; <span class="number">0</span> <span class="keyword">and</span> self.heap[index][<span class="number">0</span>] &gt; self.heap[parent][<span class="number">0</span>]:</span><br><span class="line">            self.heap[index], self.heap[parent] = self.heap[parent], self.heap[index]</span><br><span class="line">            self._float_up(parent)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_float_down</span>(<span class="params">self, index</span>):</span><br><span class="line">        <span class="comment"># 如果子节点的优先级比当前节点高，则将子节点上浮，并将当前节点下沉</span></span><br><span class="line">        left = index * <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        right = index * <span class="number">2</span> + <span class="number">2</span></span><br><span class="line">        largest = index</span><br><span class="line">        <span class="keyword">if</span> left &lt; <span class="built_in">len</span>(self.heap) <span class="keyword">and</span> self.heap[left][<span class="number">0</span>] &gt; self.heap[largest][<span class="number">0</span>]:</span><br><span class="line">            largest = left</span><br><span class="line">        <span class="keyword">if</span> right &lt; <span class="built_in">len</span>(self.heap) <span class="keyword">and</span> self.heap[right][<span class="number">0</span>] &gt; self.heap[largest][<span class="number">0</span>]:</span><br><span class="line">            largest = right</span><br><span class="line">        <span class="keyword">if</span> largest != index:</span><br><span class="line">            self.heap[index], self.heap[largest] = self.heap[largest], self.heap[index]</span><br><span class="line">            self._float_down(largest)</span><br></pre></td></tr></table></figure>
+
+<p>这个优先队列类有以下几个方法：</p>
+<ul>
+<li><code>__init__</code> 方法：初始化堆和索引。</li>
+<li><code>push</code> 方法：将新元素插入堆中，并将其上浮到合适的位置。</li>
+<li><code>pop</code> 方法：将堆顶元素弹出，并将堆最后一个元素移到堆顶，然后将其下沉到合适的位置。</li>
+<li><code>_float_up</code> 方法：将节点上浮到合适的位置。</li>
+<li><code>_float_down</code> 方法：将节点下沉到合适的位置。</li>
+</ul>
+<p>这个优先队列类使用了堆的性质，来保证优先级最高的元素总是位于堆顶。</p>
+<p>使用方法类似于普通的队列，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pq = PriorityQueue()</span><br><span class="line">pq.push(<span class="string">&#x27;A&#x27;</span>, <span class="number">10</span>)</span><br><span class="line">pq.push(<span class="string">&#x27;B&#x27;</span>, <span class="number">5</span>)</span><br><span class="line">pq.push(<span class="string">&#x27;C&#x27;</span>, <span class="number">20</span>)</span><br><span class="line"><span class="built_in">print</span>(pq.pop())  <span class="comment"># 输出 (&#x27;C&#x27;, 20)</span></span><br><span class="line"><span class="built_in">print</span>(pq.pop())  <span class="comment"># 输出 (&#x27;A&#x27;, 10)</span></span><br><span class="line"><span class="built_in">print</span>(pq.pop())  <span class="comment"># 输出 (&#x27;B&#x27;, 5)</span></span><br></pre></td></tr></table></figure>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#数据结构" >
+    <span class="tag-code">数据结构</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2022/12/18/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
+        <span class="nav-arrow">← </span>
+        
+          dp基础：背包问题
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2023/02/20/JS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        
+          JS语言学习
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88Python%EF%BC%89"><span class="toc-nav-text">基础数据结构（Python）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%95%B0%E7%BB%84%EF%BC%88Array%EF%BC%89"><span class="toc-nav-text">数组（Array）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%9A"><span class="toc-nav-text">初始化：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%93%BE%E8%A1%A8%EF%BC%88Linked-List%EF%BC%89"><span class="toc-nav-text">链表（Linked List）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="toc-nav-text">链表的优缺点：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B1%BB%E6%9D%A5%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-nav-text">使用类来实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%B8%BA%E9%93%BE%E8%A1%A8%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%BA%9B%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="toc-nav-text">为链表添加一些功能：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%A0%88%EF%BC%88Stack%EF%BC%89"><span class="toc-nav-text">栈（Stack）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E5%88%97%E8%A1%A8%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-nav-text">用列表实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E5%85%83%E7%BB%84%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-nav-text">用元组实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E7%B1%BB%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-nav-text">用类实现：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%98%9F%E5%88%97%EF%BC%88Queue%EF%BC%89"><span class="toc-nav-text">队列（Queue）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E5%88%97%E8%A1%A8%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="toc-nav-text">用列表实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E5%85%83%E7%BB%84%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="toc-nav-text">用元组实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8%E7%B1%BB%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="toc-nav-text">用类实现：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%80%9A%E8%BF%87python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-nav-text">通过python内置模块实现：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%A0%91%EF%BC%88Tree%EF%BC%89"><span class="toc-nav-text">树（Tree）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%A0%91%E7%9A%84%E4%B8%8D%E5%90%8C%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-nav-text">树的不同遍历方式：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B1%BB%E6%9D%A5%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="toc-nav-text">使用类来实现：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88Hash-Table%EF%BC%89"><span class="toc-nav-text">哈希表（Hash Table）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%93%88%E5%B8%8C%E5%80%BC%E5%8F%8A%E8%AE%A1%E7%AE%97"><span class="toc-nav-text">哈希值及计算</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%AD%97%E5%85%B8%EF%BC%9A%E7%8E%B0%E6%88%90%E7%9A%84%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-nav-text">字典：现成的哈希表</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%94%A8-set-%E5%AE%9E%E7%8E%B0"><span class="toc-nav-text">用 set 实现</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8-Python-%E7%9A%84%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-collections-%E5%AE%9E%E7%8E%B0"><span class="toc-nav-text">使用 Python 的内置模块 collections 实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-%E4%BD%BF%E7%94%A8-collections-%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8%E5%AD%90%E7%B1%BB%E5%9E%8B-defaultdict-%E5%AE%9E%E7%8E%B0"><span class="toc-nav-text">1.使用 collections 模块中的字典子类型 defaultdict 实现</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-%E4%BD%BF%E7%94%A8-collections-%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8%E5%AD%90%E7%B1%BB%E5%9E%8BCounter%E5%AE%9E%E7%8E%B0"><span class="toc-nav-text">2.使用 collections 模块中的字典子类型Counter实现</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0"><span class="toc-nav-text">手动实现</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9B%BE%EF%BC%88Graph%EF%BC%89"><span class="toc-nav-text">图（Graph）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%97%E5%85%B8%EF%BC%88%E9%82%BB%E6%8E%A5%E8%A1%A8%EF%BC%89%E5%AD%98%E5%82%A8"><span class="toc-nav-text">使用字典（邻接表）存储</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%97%E8%A1%A8%EF%BC%88%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%EF%BC%89%E5%AD%98%E5%82%A8"><span class="toc-nav-text">使用列表（邻接矩阵）存储</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A0%86%EF%BC%88Heap%EF%BC%89"><span class="toc-nav-text">堆（Heap）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A0%86%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97"><span class="toc-nav-text">使用堆来实现优先队列</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/12/20/python数据结构/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2026 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

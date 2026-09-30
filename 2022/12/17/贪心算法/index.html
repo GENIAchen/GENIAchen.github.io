@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="When there is a will, there is a way.">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      贪心算法 | GENIA
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>GENIA</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>贪心算法</h2>
+  <p class="post-date">2022-12-17</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="1-贪心算法"><a href="#1-贪心算法" class="headerlink" title="1.贪心算法"></a>1.贪心算法</h2><h3 id="概念与实例"><a href="#概念与实例" class="headerlink" title="概念与实例"></a>概念与实例</h3><p>贪心算法是一种在每个决策点取当前最优解的算法。它的目的是在每个决策点尽可能地选择最优解，希望能够导致整个问题的最优解。</p>
+<p>贪心算法的步骤如下：</p>
+<ol>
+<li>定义问题的最优子结构。这意味着问题的最优解可以从子问题的最优解中得出。</li>
+<li>选择局部最优解。在每个决策点，贪心算法选择当前看起来最优的解决方案。</li>
+<li>确定贪心策略。贪心策略是贪心算法在每个决策点选择局部最优解的方法。</li>
+<li>验证贪心策略的正确性。在求解问题时，需要证明贪心策略能够得出问题的最优解。</li>
+<li>应用贪心算法。在贪心算法的框架下，按照贪心策略的方法逐步求解问题。</li>
+</ol>
+<p>贪心算法的一个经典例子是最短路径问题（选择排序也是）。在最短路径问题中，我们希望从一个起点出发，找到一条到达终点的路径，使得这条路径的长度最短。贪心算法可以通过每次选择距离起点最近的未访问过的节点来求解最短路径问题。这样，每次选择都是当前看起来最优的选择，因此称为贪心策略。</p>
+<p>以下是用python实现最短路径问题的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义路径结构体，包含起点、终点和路径长度三个属性</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Path</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, start, end, length</span>):</span><br><span class="line">        self.start = start</span><br><span class="line">        self.end = end</span><br><span class="line">        self.length = length</span><br><span class="line"><span class="comment">#定义贪心算法的函数，需要传入起点、终点和所有路径的列表</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">greedy</span>(<span class="params">start, end, paths</span>):</span><br><span class="line">    result = []  <span class="comment"># 用来保存最终的路径</span></span><br><span class="line">    visited = <span class="built_in">set</span>()  <span class="comment"># 用来记录已经访问过的节点</span></span><br><span class="line">    current = start  <span class="comment"># 当前所在的节点</span></span><br><span class="line">    <span class="keyword">while</span> current != end:  <span class="comment"># 当前节点不是终点就继续循环</span></span><br><span class="line">        <span class="comment"># 找到从当前节点出发的未访问过的路径中距离最短的路径</span></span><br><span class="line">        min_path = <span class="built_in">min</span>(</span><br><span class="line">            [p <span class="keyword">for</span> p <span class="keyword">in</span> paths <span class="keyword">if</span> p.start == current <span class="keyword">and</span> p.end <span class="keyword">not</span> <span class="keyword">in</span> visited],</span><br><span class="line">            key=<span class="keyword">lambda</span> x: x.length</span><br><span class="line">        )</span><br><span class="line">        result.append(min_path)  <span class="comment"># 将路径加入结果列表</span></span><br><span class="line">        visited.add(min_path.end)  <span class="comment"># 将终点标记为已访问</span></span><br><span class="line">        current = min_path.end  <span class="comment"># 更新当前节点</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"><span class="comment">#假设我们有以下路径：</span></span><br><span class="line">paths = [</span><br><span class="line">    Path(<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="number">5</span>),</span><br><span class="line">    Path(<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="number">3</span>),</span><br><span class="line">    Path(<span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="number">2</span>),</span><br><span class="line">    Path(<span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="number">4</span>),</span><br><span class="line">    Path(<span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="number">6</span>),</span><br><span class="line">]</span><br><span class="line"><span class="comment">#调用贪心算法函数求解最短路径问题</span></span><br><span class="line">result = greedy(<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, paths)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;path.start&#125;</span> -&gt; <span class="subst">&#123;path.end&#125;</span>: <span class="subst">&#123;path.length&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; C: <span class="number">3</span></span><br><span class="line">C -&gt; B: <span class="number">2</span></span><br><span class="line">B -&gt; D: <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="贪心的局限性"><a href="#贪心的局限性" class="headerlink" title="贪心的局限性"></a>贪心的局限性</h3><p>1.不能保证求得的最后解是最佳的<br>2.不能用来求最大值或最小值的问题<br>3.只能求满足某些约束条件的可行解的范围</p>
+<p><strong>局部最优不等于全局最优。</strong></p>
+<h3 id="弥补策略"><a href="#弥补策略" class="headerlink" title="弥补策略"></a>弥补策略</h3><p><strong>1.分治法</strong></p>
+<p>分治法通过将问题分成若干个规模较小的子问题来求解。分治法可以用来解决最优化问题。</p>
+<p>基本思想：将问题分成若干个子问题，然后递归地求解这些子问题，最后合并子问题的结果得到最终的答案。</p>
+<p><strong>2.动态规划</strong></p>
+<p>动态规划通过对问题进行分析，找出其最优子结构，并通过记忆化搜索来避免重复计算，从而得到问题的最优解。</p>
+<p>基本思想：将问题分解成若干个子问题，然后按照拓扑关系依次求解这些子问题，最后将子问题的解合并起来。</p>
+<h2 id="2-数字三角形"><a href="#2-数字三角形" class="headerlink" title="2.数字三角形"></a>2.数字三角形</h2><p><strong>题目标签：动态规划  2020  省赛</strong></p>
+<img src="/2022/12/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2%E9%A2%98%E7%9B%AE.jpg" class="">
+
+<p>按照标签这道题确实应该用动态规划来做，但是题目放水了，实际上用贪心就可以解决。</p>
+<p>根据 “此外，向左下走的次数与向右下走的次数相差不能超过 1。” 这个条件，可以对题目做一些简化。</p>
+<p>如果输入的行数N为奇数，则最后一定会走到最后一行的中点。</p>
+<p>如果输入的行数N为偶数，则最后一定会走到最后一行的中间两个数。</p>
+<p>将不可能走到的数置为一个非常小的数，从倒数第二行的第一个数开始遍历，每次加上下面两个数之间的较大值，层层累加，即可得到最长路径。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">list0=[]</span><br><span class="line">N=<span class="built_in">eval</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment">#将输入的数据存放在一个二维列表中，一个行为一个元素</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        nums=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()))</span><br><span class="line">        list0.append(nums)</span><br><span class="line"><span class="comment">#将走不到的位置置成极小值</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N//<span class="number">2</span>+<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,i-N//<span class="number">2</span>):</span><br><span class="line">                list0[i][j]=-<span class="number">100</span></span><br><span class="line">                list0[i][-j-<span class="number">1</span>]=-<span class="number">100</span></span><br><span class="line"><span class="comment">#回溯相加</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N-<span class="number">2</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,i+<span class="number">1</span>):</span><br><span class="line">                list0[i][j]+=<span class="built_in">max</span>(list0[i+<span class="number">1</span>][j],list0[i+<span class="number">1</span>][j+<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list0[<span class="number">0</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<p>我尝试了奇数和偶数的案例，本地运行都没有问题，测试平台上却发生了奇怪的错误：</p>
+<img src="/2022/12/17/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/%E6%AE%B5%E9%94%99%E8%AF%AF.jpg" class="">
+
+<p><strong>去掉split()方法中的参数</strong>就不再发生段错误了，具体是什么原因？</p>
+<p>有一个注意点：碰到这一类问题，不能局限于题目给的测试样例进行推算，确定循环的范围。这道题一开始提交的时候只能通过两个测试案例，就是因为我想当然的将<code>range(0,i-N//2)</code>写成了<code>range(0,i-2)</code>。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#算法" >
+    <span class="tag-code">算法</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+    
+      <a class="nav-right" href="/2022/12/18/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
+        
+          dp基础：背包问题
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-nav-text">1.贪心算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%9E%E4%BE%8B"><span class="toc-nav-text">概念与实例</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%B4%AA%E5%BF%83%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-nav-text">贪心的局限性</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%BC%A5%E8%A1%A5%E7%AD%96%E7%95%A5"><span class="toc-nav-text">弥补策略</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="toc-nav-text">2.数字三角形</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2022/12/17/贪心算法/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2026 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

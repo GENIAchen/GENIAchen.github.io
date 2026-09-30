@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="When there is a will, there is a way.">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Cryptohack wp(1) - Modular Arithmetic | GENIA
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>GENIA</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Cryptohack wp(1) - Modular Arithmetic</h2>
+  <p class="post-date">2024-09-18</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="Modular-Arithmetic-简单算术"><a href="#Modular-Arithmetic-简单算术" class="headerlink" title="Modular Arithmetic - 简单算术"></a>Modular Arithmetic - 简单算术</h1><h3 id="Greatest-Common-Divisor"><a href="#Greatest-Common-Divisor" class="headerlink" title="Greatest Common Divisor"></a>Greatest Common Divisor</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911200416652.png" class="">
+
+<p>对于两个素数 a 和 b，如果 gcd(a,b) &#x3D; 1 ，那么可以说 a 和 b 互质。</p>
+<p>如果 a 和 b 都是素数，那 a 和 b 一定互质。</p>
+<p>如果 a 是素数并且 b &lt; a，那么 a 和 b 也是互质的。</p>
+<blockquote>
+<p>问：如果 a 是素数并且 b &gt; a，为什么 a 和 b 不一定互质？</p>
+<p>答：因为 b 可能是 a 的倍数。</p>
+</blockquote>
+<p>用于计算最大公约数的最常见算法是 欧几里得 算法，就是我们古代的辗转相除法（《九章算术》中出现）。</p>
+<p>辗转相除法基于如下原理：</p>
+<p>两个整数的最大公约数等于其中较小的数和两数相除余数的最大公约数。</p>
+<p>循环计算，使这两个数不断缩小直至余数为 0。剩下的数即为最大公约数。</p>
+<p>以 a &#x3D; 12，b &#x3D; 8 为例：</p>
+<p>12 &#x2F; 8 &#x3D; 1 …… 4</p>
+<p>8 &#x2F; 4 &#x3D; 2 …… 0</p>
+<p>所以 4 是最大公约数。 </p>
+<p><strong>问：求 gcd（a,b) , a &#x3D; 66528, b &#x3D; 52920</strong></p>
+<p>66528 &#x2F; 52920 &#x3D; 1 …… 13608</p>
+<p>52920 &#x2F; 13608 &#x3D; 3 …… 12096</p>
+<p>13608 &#x2F; 12096 &#x3D; 1 …… 1512</p>
+<p>12096 &#x2F; 1512 &#x3D; 8 …… 0</p>
+<p>所以结果是 1512。</p>
+<p>用代码来实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a,b</span>):</span><br><span class="line">	<span class="keyword">if</span> a &gt;= b:</span><br><span class="line">		x,y = a,b</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		x,y = b,a</span><br><span class="line">	<span class="keyword">while</span> y != <span class="number">0</span>:</span><br><span class="line">		z = x % y</span><br><span class="line">		x = y</span><br><span class="line">		y = z</span><br><span class="line">	<span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<h3 id="Extended-GCD"><a href="#Extended-GCD" class="headerlink" title="Extended GCD"></a>Extended GCD</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911203835862.png" class="">
+
+<p>通过扩展欧几里得算法，我们在得到正整数 a 和 b 的最大公因数的同时，还可以求出满足裴蜀定理的整数 u 和 v 。</p>
+<p>扩展欧几里得算法利用了带余除法所得的商，在辗转相除的同时也能得到裴蜀等式中的u、v两个系数。且以扩展欧几里得算法求得的系数是满足裴蜀等式的最简系数。</p>
+<p><strong>复习：矩阵的初等变换</strong></p>
+<img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911205525250.png" class="">
+
+<p>扩展欧几里得算法在原来得基础上引入了 s 和 t 两组序列：</p>
+<img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911205703547.png" class="">
+
+<p>具体如下例：</p>
+<img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911205840758.png" class="">
+
+<p>用初等变换（这里只用到了列与列之间的第三种初等变换）表示：</p>
+<img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911210100336.png" class="">
+
+<p><strong>问：有两个质数 p &#x3D; 26513 , q &#x3D; 32321 , 已知 $$p·u + q·v &#x3D; gcd(p,q) $$，求出 u 和 v</strong></p>
+<p>首先 p 和 q 是两个质数，那么它们的公约数一定是 1。但是我没感觉这能给计算带来什么便利。</p>
+<p>代码跑一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">gcd_extend</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">if</span> x &gt; y:</span><br><span class="line">        a,b = x,y</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        a,b = y,x</span><br><span class="line">    s_a,s_b = <span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    t_a,t_b = <span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> b!= <span class="number">0</span>:</span><br><span class="line">        c = a % b</span><br><span class="line">        d = a // b</span><br><span class="line">        a = b</span><br><span class="line">        b = c</span><br><span class="line">        s_c = s_a - d*s_b</span><br><span class="line">        s_a = s_b</span><br><span class="line">        s_b = s_c</span><br><span class="line">        t_c = t_a - d*t_b</span><br><span class="line">        t_a = t_b</span><br><span class="line">        t_b = t_c</span><br><span class="line">    <span class="keyword">return</span> s_a,t_a</span><br><span class="line"></span><br><span class="line">u,v = gcd_extend(<span class="number">26513</span>,<span class="number">32321</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;u = <span class="subst">&#123;u&#125;</span>,v = <span class="subst">&#123;v&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果是 ：u &#x3D; -8404, v &#x3D; 10245</p>
+<p><strong>扩展欧几里得算法的一个重要应用是计算模逆元，而求出模逆元是RSA算法中获取公钥、私钥的必要步骤。</strong></p>
+<h3 id="Modular-Arithmetic-1"><a href="#Modular-Arithmetic-1" class="headerlink" title="Modular Arithmetic 1"></a>Modular Arithmetic 1</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240911220011201.png" class="">
+
+<p><strong>同余的概念</strong></p>
+<p>如果两个整数 a 和 b 除以同一个整数 得到的余数相同都等于 m，则可以称 a 和 b 同余。</p>
+<p>记作 $$a\equiv b \ (mod \ m) $$ 。即 $$a-b &#x3D; km$$ 。</p>
+<p>也有一种特殊情况，当 m 整除 a 时（a 能被 m 完全整除，没有余数，也记作 $$m|a$$），a 在模 m 下与 0 同余。</p>
+<p>记作 $$a\equiv0 \ (mod \ m)$$  。</p>
+<p>这题口算一下就行，x &#x3D; 5，y &#x3D;  8146798528947 % 17 &#x3D; 4</p>
+<p>显然更小的是 4。</p>
+<h3 id="Modular-Arithmetic-2"><a href="#Modular-Arithmetic-2" class="headerlink" title="Modular Arithmetic 2"></a>Modular Arithmetic 2</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240912105542968.png" class="">
+
+<p><strong>模数运算</strong></p>
+<p>对一个数取模，相当于用这个数除以模数并取余数。比如 7 mod 3 &#x3D; 1。</p>
+<p><strong>模数p为素数</strong></p>
+<p>则  $$0$$ 到  $$p−1$$ 这些数的集合构成一个“域”，数学上称为 $$\mathbb{F}_p$$ 。</p>
+<p>在这个域里，对于集合中的每一个元素 $$a$$ ，加法和乘法都有对应的“反元素” $$b_+$$ 和 $$b_*$$ ，实现 $$ a+b_+ &#x3D; 0$$ , $$a · b_* &#x3D; 1$$ 。</p>
+<p><strong>模数p为非素数</strong></p>
+<p>则  $$0$$ 到  $$p−1$$ 这些数的集合只能构成一个“环”，环中加法仍然有反元素，但乘法不一定有。</p>
+<blockquote>
+<p>因为我没学过数论，这里关于域和环的定义我是云里雾里的，首先我不清楚为什么环不一定有乘法逆元，其次我并不知道数集构成域或环与p是否为素数能建立一种怎样的关系，它又和和费马小定理有什么联系。暂时先跳过吧。</p>
+</blockquote>
+<p><strong>费马小定理</strong></p>
+<p>这个定理属于数论。假设 a 是一个整数，p是一个素数，那么 $$a^p - a$$ 是 p 的倍数。</p>
+<p>可以记作：$$a^p\equiv a \ (mod\  p) $$</p>
+<p>如果 a 不是 p 的倍数，这个定理可以写成一个常用形式：$$a^{p-1}\equiv 1 \ (mod\  p)$$</p>
+<p>如果 a 是 p 的倍数，则有：$$a^{p-1}\equiv 0 \ (mod\  p)$$</p>
+<p>费马小定理的逆叙述是不成立的，也就是说，如果 $$a^p - a$$ 是 p 的倍数，并不能保证 p 是一个素数。</p>
+<p><strong>问：已知素数 p &#x3D; 65537, 计算 $$273246787654^{65536}\ mod\ 65537 $$</strong></p>
+<p>273246787654  不是 65537 的倍数，所以这个结果为 1。</p>
+<h3 id="Modular-Inverting"><a href="#Modular-Inverting" class="headerlink" title="Modular Inverting"></a>Modular Inverting</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240912210937271.png" class="">
+
+<p>对于由素数 p 个元素构成的有限域  $$\mathbb{F}_p$$ ，其中的每个元素 g，存在一个数字 d，使得 $$g · d ≡ 1 \ (mod \ p)$$。就是说 g 和 d 相乘的结果对 p 取模后等于 1。数字 d 就是 g 的乘法逆元。</p>
+<p><strong>问：已知 $$3·d≡1 \ mod\ 13$$ ，利用费马小定理求出 d</strong> </p>
+<p>根据费马小定理，当 p 为素数时，有：$$a^p\equiv a \ (mod\  p) $$</p>
+<p>根据同余的基本法则，当 除数 与 模数 互质时，同余两边可以同时除以该除数。</p>
+<p>若 $$ a\equiv b\ (mod\ m)$$ ，$$gcd(d,m)&#x3D;1$$ ，则 $$ \frac{a}{d}\equiv\frac{b}{d}\ (mod\ m)$$ 。</p>
+<p>因为 13 为素数，且 3 小于 13，因此在题设情况下，a 和 p 一定是互质的。</p>
+<p>所以有：$$a^{p-1}\equiv 1 \ (mod\  p) $$ ，进一步变化为：$$a·a^{p-2}\equiv 1 \ (mod\  p) $$ </p>
+<p>与 $$3·d≡1 \ mod\ 13$$ 相对照，很容易得到 $$d_0 &#x3D; 3^{11} &#x3D; 177147$$ 。</p>
+<p>$$d_0$$ 还并不算是最简的，我们需要再将其 mod 13 得到最后的结果 $$d &#x3D; d_0\ mod\ 13&#x3D;9$$ 。</p>
+<h3 id="Quadratic-Residues"><a href="#Quadratic-Residues" class="headerlink" title="Quadratic Residues"></a>Quadratic Residues</h3>
+
+<p><strong>模平方根</strong></p>
+<p>对于给定的奇素数 p ，若 $$a^2\equiv b \ mod\  p $$ ，则称 a 是 b 的模平方根。（a 和 b 都要求是  $$\mathbb{F}_p$$ 中的数）</p>
+<p>要求出有限域  $$\mathbb{F}_p$$ 中任意一个一个整数 b 的模平方根，按照我们现有的知识水平，只有从 1 开始一个一个试到 p-1，看看是否有符合条件的 a。</p>
+<p>题目直接给出了结论，即并不是  $$\mathbb{F}_p$$ 中的任何一个整数都有模平方根，只有大概一半的集合元素可以找到满足条件的 a。</p>
+<p>在数论中的同余理论中，如果存在 a 满足以上条件，也可以说 b 是模 p 的二次剩余。</p>
+<p>反过来说，如果不存在 a 满足以上条件，我们就说 b 是模 p 的二次非剩余。</p>
+<p><strong>问：已知 $$ p&#x3D;29\ \ ints&#x3D;[14,6,11]$$，我们需要找出 ints 列表中唯一的模 p 的二次剩余，并计算出它的模平方根。</strong></p>
+<p>暂时不会别的算法，暴力求解一波。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">29</span></span><br><span class="line">ints = [<span class="number">14</span>,<span class="number">6</span>,<span class="number">11</span>]</span><br><span class="line">flag = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,p):</span><br><span class="line">        <span class="keyword">if</span> (j*j)%p==ints[i]:</span><br><span class="line">            flag = <span class="number">1</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;quadratic residue:<span class="subst">&#123;ints[i]&#125;</span>, square root:<span class="subst">&#123;j&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> flag == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quadratic residue:6, square root:8</span><br><span class="line">quadratic residue:6, square root:21</span><br></pre></td></tr></table></figure>
+
+<p>提交模平方根中更小的一个，那就是 8。</p>
+<h3 id="Legendre-Symbol"><a href="#Legendre-Symbol" class="headerlink" title="Legendre Symbol"></a>Legendre Symbol</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240912223253700.png" class="">
+
+<p>通过二次剩余定理，我们知道了模平方根的概念。也了解了并不是有限域  $$\mathbb{F}_p$$ 中的所有的整数都存在模平方根。</p>
+<p>如果模数 p 较小时，我们可以通过暴力遍历的方式判断哪些元素是 p 的二次剩余，但当 p 增大到一定数量级之后，该方法就不再合理了。</p>
+<p><strong>二次（非）剩余的简单性质</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Quadratic Residue * Quadratic Residue = Quadratic Residue</span><br><span class="line">Quadratic Residue * Quadratic Non-residue = Quadratic Non-residue</span><br><span class="line">Quadratic Non-residue * Quadratic Non-residue = Quadratic Residue</span><br></pre></td></tr></table></figure>
+
+<p>类似于同或的性质。把二次剩余看作 1 ，二次非剩余看作 -1 ，也满足以上条件。</p>
+<p><strong>勒让德符号（二次特征）</strong></p>
+<p>这是一种用来判断整数是否为奇素数 p 的二次剩余的有效方法。</p>
+<p>勒让德符号的定义：</p>
+<img src="C:/Users/25430/Desktop/cryptohack/course/Modular Arithmetic/Modular Arithmetic.assets/image-20240913102910076.png" alt="image-20240913102910076" style="zoom:50%;" />
+
+<p>该符号遵循以下规则：</p>
+<img src="C:/Users/25430/Desktop/cryptohack/course/Modular Arithmetic/Modular Arithmetic.assets/image-20240913102956002.png" alt="image-20240913102956002" style="zoom:50%;" />
+
+<p>因此我们只需要计算  $$(\frac{a}{p})$$  就可以判断 a 是否是 p 的二次剩余。</p>
+<p><strong>问：给定1024位素数 p 和10个整数，找到 p 的二次剩余，然后计算其模平方根。已知 $$p\equiv3\ mod\ 4$$  。</strong></p>
+<p>计算  $$a^\frac{p-1}{2}\ (mod\ p)$$  ，求出 p 的二次剩余。</p>
+<p>计算得到 ints 中只有一个数属于 p 的二次剩余。而  $$p\equiv3\ mod\ 4$$  。</p>
+<p>因为  $$p\equiv3\ mod\ 4$$  ，所以 $$p &#x3D; 4k+3$$ ，$$p+1&#x3D;4k+4$$ ，$$p-1&#x3D;4k+2$$。k 是整数。<br>$$<br>已知\ a\ 是二次剩余，所以有：\<br>a^\frac{p-1}{2}\equiv 1 \ (mod\  p)\<br>a^{2k+1}\equiv 1 \ (mod\ p)\<br>根据同余的基本性质：若 a \equiv b\  (mod\ p) ,\ 则\ ka \equiv kb\  (mod\ p)\<br>得到：a^{2k+2}\equiv a\ (mod\  p)\<br>则：x^2 &#x3D; (\pm a^{k+1})^2\<br>所以：x&#x3D;\pm a^\frac{p+1}{4}<br>$$<br>那这题就直接出结果了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">101524035174539890485408575671085261788758965189060164484385690801466167356667036677932998889725476582421738788500738738503134356158197247473850273565349249573867251280253564698939768700489401960767007716413932851838937641880157263936985954881657889497583485535527613578457628399173971810541670838543309159139</span></span><br><span class="line"></span><br><span class="line">ints = [<span class="number">25081841204695904475894082974192007718642931811040324543182130088804239047149283334700530600468528298920930150221871666297194395061462592781551275161695411167049544771049769000895119729307495913024360169904315078028798025169985966732789207320203861858234048872508633514498384390497048416012928086480326832803</span>, </span><br><span class="line">    <span class="number">45471765180330439060504647480621449634904192839383897212809808339619841633826534856109999027962620381874878086991125854247108359699799913776917227058286090426484548349388138935504299609200377899052716663351188664096302672712078508601311725863678223874157861163196340391008634419348573975841578359355931590555</span>, </span><br><span class="line">        <span class="number">17364140182001694956465593533200623738590196990236340894554145562517924989208719245429557645254953527658049246737589538280332010533027062477684237933221198639948938784244510469138826808187365678322547992099715229218615475923754896960363138890331502811292427146595752813297603265829581292183917027983351121325</span>, </span><br><span class="line">        <span class="number">14388109104985808487337749876058284426747816961971581447380608277949200244660381570568531129775053684256071819837294436069133592772543582735985855506250660938574234958754211349215293281645205354069970790155237033436065434572020652955666855773232074749487007626050323967496732359278657193580493324467258802863</span>, </span><br><span class="line">        <span class="number">4379499308310772821004090447650785095356643590411706358119239166662089428685562719233435615196994728767593223519226235062647670077854687031681041462632566890129595506430188602238753450337691441293042716909901692570971955078924699306873191983953501093343423248482960643055943413031768521782634679536276233318</span>, </span><br><span class="line">        <span class="number">85256449776780591202928235662805033201684571648990042997557084658000067050672130152734911919581661523957075992761662315262685030115255938352540032297113615687815976039390537716707854569980516690246592112936796917504034711418465442893323439490171095447109457355598873230115172636184525449905022174536414781771</span>, </span><br><span class="line">        <span class="number">50576597458517451578431293746926099486388286246142012476814190030935689430726042810458344828563913001012415702876199708216875020997112089693759638454900092580746638631062117961876611545851157613835724635005253792316142379239047654392970415343694657580353333217547079551304961116837545648785312490665576832987</span>, </span><br><span class="line">        <span class="number">96868738830341112368094632337476840272563704408573054404213766500407517251810212494515862176356916912627172280446141202661640191237336568731069327906100896178776245311689857997012187599140875912026589672629935267844696976980890380730867520071059572350667913710344648377601017758188404474812654737363275994871</span>, </span><br><span class="line">        <span class="number">4881261656846638800623549662943393234361061827128610120046315649707078244180313661063004390750821317096754282796876479695558644108492317407662131441224257537276274962372021273583478509416358764706098471849536036184924640593888902859441388472856822541452041181244337124767666161645827145408781917658423571721</span>, </span><br><span class="line">        <span class="number">18237936726367556664171427575475596460727369368246286138804284742124256700367133250078608537129877968287885457417957868580553371999414227484737603688992620953200143688061024092623556471053006464123205133894607923801371986027458274343737860395496260538663183193877539815179246700525865152165600985105257601565</span>]</span><br><span class="line"></span><br><span class="line">Quadratic_Residue = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ints:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">pow</span>(i, (p-<span class="number">1</span>)//<span class="number">2</span>, p) == <span class="number">1</span>:</span><br><span class="line">        Quadratic_Residue.append(i)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">pow</span>(Quadratic_Residue[<span class="number">0</span>],(p+<span class="number">1</span>)//<span class="number">4</span>,p))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[85256449776780591202928235662805033201684571648990042997557084658000067050672130152734911919581661523957075992761662315262685030115255938352540032297113615687815976039390537716707854569980516690246592112936796917504034711418465442893323439490171095447109457355598873230115172636184525449905022174536414781771]</span></span><br><span class="line"><span class="string">93291799125366706806545638475797430512104976066103610269938025709952247020061090804870186195285998727680200979853848718589126765742550855954805290253592144209552123062161458584575060939481368210688629862036958857604707468372384278049741369153506182660264876115428251983455344219194133033177700490981696141526</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Modular-Square-Root"><a href="#Modular-Square-Root" class="headerlink" title="Modular Square Root"></a>Modular Square Root</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240913200515665.png" class="">
+
+<p>所有的非 2 素数 p ，也就是奇素数，都遵循两种情况：$$p\equiv 1\ (mod\ 4)$$ 或者 $$p\equiv 3\ (mod\ 4)$$ 。</p>
+<p>对于后一种情况，可以通过费马小定理推导出一个模平方根的直接计算式。但是对于前一种情况没有更快捷的方式。</p>
+<p>而 Tonelli-Shanks 算法就是一种通用的方法。</p>
+<blockquote>
+<p>Tonelli-Shanks 算法不适用于复合（非素数）模量。求平方根模复合在计算上等价于整数分解，是一个难题。</p>
+</blockquote>
+<p><strong>Tonelli-Shanks 算法的实现</strong></p>
+<ol>
+<li><p>通过欧拉检验判断 $a$ 是否为二次剩余，计算 $$a^\frac{p-1}{2}(mod\ p)$$，如果结果是 $$p-1$$ （在模运算中，$-1$ 就等同于 $p-1$），则模平方根不存在。如果结果为 1，继续。</p>
+</li>
+<li><p>将 $$p-1$$ 分解为 $$2^e·s$$ ，$$e$$ 是一个整数，$$s$$ 是一个奇数。</p>
+</li>
+<li><p>找出一个数 $$q$$ ，使得 $$q^\frac{p-1}{2} \equiv -1\ (mod\ p)$$ ，也就是说需要找出一个 $$p$$ 的二次非剩余。</p>
+</li>
+<li><p>初始化变量：</p>
+<p>$$x &#x3D; a^\frac{s+1}{2}$$</p>
+<p>$$b&#x3D;a^s\ (mod\ p)$$ </p>
+<p>$$g&#x3D;q^s\ (mod\ p)$$<br>$$r&#x3D;e$$  </p>
+</li>
+<li><p>进入循环阶段，不断更新变量，直到找到平方根：</p>
+<ul>
+<li><p>找到最小的 $$m$$，使其满足 $$b^{2^m} \equiv 1\ (mod\ p)$$ ，$$0 \leq m \leq r-1$$ 。</p>
+</li>
+<li><p>如果 $$m&#x3D;0$$ ，说明当前的 $$x$$ 已经是正确的平方根，可以直接返回结果。</p>
+</li>
+<li><p>如果 $$m\neq0$$ ，则继续更新变量：</p>
+<p>​		$$x &#x3D; x·g^{2^{r-m-1}}$$</p>
+<p>​		$$b&#x3D;b·g^{2^{r-m}}$$</p>
+<p>​		$$g&#x3D;g^{2^{r-m}}$$</p>
+<p>​		$$r&#x3D;m$$</p>
+</li>
+</ul>
+</li>
+<li><p>直到 $$m&#x3D;0$$ 或 $$b&#x3D;1$$ ，循环终止，返回 $$x$$ 作为模平方根。</p>
+</li>
+<li><p>如果 $$x$$ 是模平方根，$$p-x$$ 也是。</p>
+</li>
+</ol>
+<p><strong>问：计算一个 2048 位的素数 p 下二次剩余 a 的模平方根。</strong></p>
+<p>在 Sage 中有封装好的函数可以使用，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">sage: from sage.rings.finite_rings.integer_mod import square_root_mod_prime</span><br><span class="line">sage: a = 8479994658316772151941616510097127087554541274812435112009425778595495</span><br><span class="line">....: 35970024447040064240374705856680712781416539664021584419232790045411625797</span><br><span class="line">....: 94874320167693299707670467350912498986780880616347965595567049598464241318</span><br><span class="line">....: 20416048436501387617211770124292793308079214153179977624440438616958575058</span><br><span class="line">....: 36119397568662004643987730833998929560453786749368387277884392177130730560</span><br><span class="line">....: 27763987869783538662316614533760567719720697763989990137695889361948593449</span><br><span class="line">....: 41268223184197231368887060609212875507518936172060702209557124430477137421</span><br><span class="line">....: 84713068260166696869165144723691701863490240770479732850946185484243201500</span><br><span class="line">....: 9878011354022108661461024768</span><br><span class="line">sage: p = 3053185186199433325267593511148795069441433276390908351413376986135096</span><br><span class="line">....: 08950765046872613698157357425494287891383008430820865500590828351414545266</span><br><span class="line">....: 18160634109969195486322015775943030060449557090064811940139431735209185996</span><br><span class="line">....: 45473916355591072649359722264685550644560295368952740536220792699044239170</span><br><span class="line">....: 50146047770386858805275374898453591015524422928043984726423566093048106807</span><br><span class="line">....: 31556542002301547846635101455995732584071355903010856718680732337369128498</span><br><span class="line">....: 65525527700364366903169451685139050592341671060121261844310984404151494240</span><br><span class="line">....: 19696291589754570790269063043287490399972629603012091581759200518906209470</span><br><span class="line">....: 63936347307238412281568760161</span><br><span class="line">sage: mod_a = Mod(a, p)</span><br><span class="line">sage: square_root_mod_prime(mod_a, p)</span><br><span class="line">2362339307683048638327773298580489298932137505520500388338271052053734747862351779647314176817953359071871560041125289919247146074907151612762640868199621186559522068338032600991311882224016021222672243139362180461232646732465848840425458257930887856583379600967761738596782877851318489355679822813155123045705285112099448146426755110160002515592418850432103641815811071548456284263507805589445073657565381850521367969675699760755310784623577076440037747681760302434924932113640061738777601194622244192758024180853916244427254065441962557282572849162772740798989647948645207349737457445440405057156897508368531939120</span><br><span class="line">sage: p-236233930768304863832777329858048929893213750552050038833827105205373474</span><br><span class="line">....: 78623517796473141768179533590718715600411252899192471460749071516127626408</span><br><span class="line">....: 68199621186559522068338032600991311882224016021222672243139362180461232646</span><br><span class="line">....: 73246584884042545825793088785658337960096776173859678287785131848935567982</span><br><span class="line">....: 28131551230457052851120994481464267551101600025155924188504321036418158110</span><br><span class="line">....: 71548456284263507805589445073657565381850521367969675699760755310784623577</span><br><span class="line">....: 07644003774768176030243492493211364006173877760119462224419275802418085391</span><br><span class="line">....: 62444272540654419625572825728491627727407989896479486452073497374574454404</span><br><span class="line">....: 05057156897508368531939120</span><br><span class="line">....:</span><br><span class="line">28169512554311284614348161812907461395482195258388583125795498809297226147214152907614055638917789190356917578259717792167302913007927989841763977292434488782635964253677743342038748567333074043589267896292373028724763808006697707070301035339291758998923066001985927788808579330075671953036025191791621915640175242425390397212674797332132801882880223506177201168864920484993546017284338829512010922075018689505381642887042980971582058343875078178836965895987271392081926458392283354971823611423820865651283490761548053384731721391637064349021755899877224522161311561209530712702153163501623531290150340903913036821041</span><br></pre></td></tr></table></figure>
+
+<h3 id="Chinese-Remainder-Theorem"><a href="#Chinese-Remainder-Theorem" class="headerlink" title="Chinese Remainder Theorem"></a>Chinese Remainder Theorem</h3><img src="/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/image-20240919221040141.png" class="">
+
+<p><strong>中国剩余定理</strong>给出了以下的一元线性同余方程组：</p>
+<img src="C:/Users/25430/Desktop/cryptohack/course/Modular Arithmetic/Modular Arithmetic.assets/image-20240919221446071.png" alt="image-20240919221446071" style="zoom:50%;" />
+
+<p>假设整数 $$m_1,m_2 … m_n$$ 其中任意两数互质，则对于任意的整数 $$a_1,a_2…a_n$$ ，方程组 $S$ 有解。</p>
+<p>其通解可以通过以下方式构造得到：</p>
+<ol>
+<li>设 $$M &#x3D; m_1 \times m_2 \times \cdots \times m_n &#x3D; \prod_{i&#x3D;1}^n m_i$$ ，其中 $$m_i$$ 是整数 $$m_1, m_2, …, m_n$$ 的乘积，并设 $$M_i &#x3D; M &#x2F; m_i,<br>\quad \forall i \in {1, 2, \cdots, n}$$，即 $$M_i$$ 是除 $$m_i$$ 以外的 $$n-1$$ 个整数的乘积。</li>
+<li>设 $$t_i &#x3D; M_i^{-1}$$ 为 $$M_i$$ 模  $$m_i$$ 的数论倒数：$$\quad t_i M_i \equiv 1 \pmod{m_i}, \quad \forall i \in {1, 2, \cdots, n}$$</li>
+<li>方程组 $$(S)$$ 的通解形式为：$$x &#x3D; a_1 t_1 M_1 + a_2 t_2 M_2 + \cdots + a_n t_n M_n + kM &#x3D; kM + \sum_{i&#x3D;1}^n a_i t_i M_i, \quad k \in \mathbb{Z}$$ 。在模 $$M$$ 的意义下，方程组 $$(S)$$ 只有一个解：$$\quad x &#x3D; \sum_{i&#x3D;1}^n a_i t_i M_i$$ 。</li>
+</ol>
+<p><strong>问：已知 $$x\equiv 2\ mod\ 5 \ x\equiv 3\ mod\ 11 \ x\equiv 5\ mod\ 17$$，求一个整数 a 满足 $$x\equiv a\ mod\ 935$$ 。</strong></p>
+<p>根据中国剩余定理：<br>$$<br>M &#x3D; 5\times11\times17 &#x3D; 935\<br>M_1 &#x3D; 187,m_1 &#x3D; 5\<br>M_2 &#x3D; 85,m_2 &#x3D; 11\<br>M_3 &#x3D; 55,m_3 &#x3D; 17\<br>$$<br>根据费马小定理：如果 a 不是 p 的倍数且 p 为素数，有 $$a^{p-1}\equiv 1 \ (mod\  p)$$ ，那么 $$a·a^{p-2}\equiv 1(mod\ p)$$ 。</p>
+<p>求出：<br>$$<br>t_1 &#x3D; 187^3 \ mod\  5 &#x3D; 3\<br>t_2 &#x3D; 85^9 \ mod\  11 &#x3D; 7\<br>t_3 &#x3D; 55^15 \ mod\ 17 &#x3D; 13\<br>x &#x3D; 2·3·187 + 3·7·85 + 5·13·55 &#x3D; 6482\<br>a &#x3D; 6482\ mod\ 935 &#x3D; 872<br>$$</p>
+<h3 id="Adrien’s-Signs"><a href="#Adrien’s-Signs" class="headerlink" title="Adrien’s Signs"></a>Adrien’s Signs</h3><p>已知题目条件：<br>$$<br>a &#x3D; 288260533169915\<br>p &#x3D; 1007621497415251\<br>e &#x3D; 随机整数\in[1,p]\<br>n &#x3D; a^e\ mod\ p\<br>若\ b&#x3D;1，则\ final&#x3D;n\<br>若\ b&#x3D;0，则\ final&#x3D;-n\ mod\ p&#x3D;p-n\<br>其中\ final\ 数组已知，求\ b\ 序列<br>$$</p>
+<p>经过程序判断，a 不是素数，p 是素数，a 与 p 互质。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#数学" >
+    <span class="tag-code">数学</span>
+  </a>
+
+  <a href="/tags#密码学" >
+    <span class="tag-code">密码学</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2023/12/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE-%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81/">
+        <span class="nav-arrow">← </span>
+        
+          数据结构-图-模板代码
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2024/10/30/nju-os-M1/">
+        
+          nju-os M1
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Modular-Arithmetic-%E7%AE%80%E5%8D%95%E7%AE%97%E6%9C%AF"><span class="toc-nav-text">Modular Arithmetic - 简单算术</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Greatest-Common-Divisor"><span class="toc-nav-text">Greatest Common Divisor</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Extended-GCD"><span class="toc-nav-text">Extended GCD</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Modular-Arithmetic-1"><span class="toc-nav-text">Modular Arithmetic 1</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Modular-Arithmetic-2"><span class="toc-nav-text">Modular Arithmetic 2</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Modular-Inverting"><span class="toc-nav-text">Modular Inverting</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Quadratic-Residues"><span class="toc-nav-text">Quadratic Residues</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Legendre-Symbol"><span class="toc-nav-text">Legendre Symbol</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Modular-Square-Root"><span class="toc-nav-text">Modular Square Root</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Chinese-Remainder-Theorem"><span class="toc-nav-text">Chinese Remainder Theorem</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Adrien%E2%80%99s-Signs"><span class="toc-nav-text">Adrien’s Signs</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2024/09/18/Cryptohack-wp-1-Modular-Arithmetic/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2026 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+    
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
